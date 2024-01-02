@@ -11,5 +11,6 @@
   "invalidAns": "Invalid answer, please input 'y' or 'n'.",
   "win game": "You won! Congrats!",
   "lost game": "You lost the game :(...",
-  "Thanks": "Thanks for playing!"
+  "Thanks": "Thanks for playing!",
+  "display moves" : "Would you like to display the move history? (y/n) "
 }

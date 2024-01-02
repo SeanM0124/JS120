@@ -11,7 +11,7 @@ function createComputer() {
     choices: [],
     move: null,
     choose(context) {
-      if (this.movesHistory.length === 0) {
+      if (this.movesHistory.length < 1) {
         let keys = Object.keys(context.MOVES);
         this.move = (keys[Math.floor(keys.length * Math.random())]);
       } else {
@@ -96,6 +96,8 @@ const RPSGame = {
   score: null,
   promptKey: '=>',
   winCondition: 5,
+  seriesLength: [],
+  seriesEnd: [],
   MOVES: {
     rock: { abbreviation: 'r', beats: ['scissors', 'lizard']},
     lizard: { abbreviation: 'l', beats: ['spock,', 'paper']},
@@ -134,8 +136,8 @@ const RPSGame = {
     this.prompt('Thanks');
   },
 
-  playAgain() {
-    let answer = readline.question(this.prompt('play again'));
+  yesOrNoQuestion(message) {
+    let answer = readline.question(this.prompt(message));
     while (!['yes', 'y', 'no', 'n'].includes(answer)) {
       answer = readline.question(this.prompt('invalidAns'));
     }
@@ -190,6 +192,16 @@ const RPSGame = {
       this.score.computer === this.winCondition);
   },
 
+  displayMoveHistory() {
+    let movesHuman = this.human.movesHistory;
+    let movesComputer = this.computer.movesHistory;
+    this.seriesLength.push(movesHuman.length - (this.seriesLength[this.seriesLength.length - 1] || 0));
+    for (let index = 1; index < movesHuman.length + 1; index++) {
+      console.log(`Round ${index} - Human: ${movesHuman[index - 1][0]} - Computer: ${movesComputer[index - 1][0]} - Result: ${movesHuman[index - 1][1]}`);
+    }
+    this.printLines();
+  },
+
   play() {
     this.displayWelcomeMessage();
     while (true) {
@@ -200,7 +212,8 @@ const RPSGame = {
         this.displayRoundWinner();
       }
       this.seriesResult();
-      if (!this.playAgain()) break;
+      if (this.yesOrNoQuestion('display moves')) this.displayMoveHistory();
+      if (!this.yesOrNoQuestion('play again')) break;
     }
     this.displayGoodbyeMessage();
   },
