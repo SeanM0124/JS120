@@ -1,0 +1,13 @@
+Describe some advantages and disadvantages of OOP.
+
+Pros:
+- More maintable/Readable
+- Allows for more flexiblity
+- Easier to change/edit/alter
+- Lets programmers thing at a higher level of abstraction
+- Reduce dependencies
+
+Cons:
+- Possibly means much larger programs
+- Perhap the programs are less efficient
+- More memory, computing power etc

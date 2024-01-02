@@ -1,0 +1,27 @@
+Suppose we want to use code to keep track of products in our hardware store's
+inventory. A first stab might look something like this:
+
+let scissorsId = 0;
+let scissorsName = 'Scissors';
+let scissorsStock = 8;
+let scissorsPrice = 10;
+
+let drillId = 1;
+let drillName = 'Cordless Drill';
+let drillStock = 15;
+let drillPrice = 45;
+
+
+This code presents a number of problems, however.
+What if we want to add another kind of drill?
+Given what we've learned about object orientation in the previous assignment,
+how could we use objects to organize these two groups of data?
+
+function createItem(name, stock, price, id) {
+	return { 
+		id,
+		name,
+		stock,
+		price,
+	};
+}

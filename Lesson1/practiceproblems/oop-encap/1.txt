@@ -1,0 +1,8 @@
+In your own words, what is Object Oriented Programming?
+
+Object Oriented Programming is using objects to store state and behavior. By grouping the two,
+code becomes more maintainable and flexible.
+
+- Think about the problem in terms of objects
+- Uses objects to organize code
+

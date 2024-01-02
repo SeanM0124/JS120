@@ -1,0 +1,4 @@
+#
+1. What naming conventions separates constructor functions from other functions?
+    
+    The name begins with a capital letter i.e. `Car`

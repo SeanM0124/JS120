@@ -1,0 +1,2 @@
+The two objects for the same animal differ in terms of 'own' properties. The first object created by the factory has each property, whether it be method or state.
+The second object created with OLOO, only will have the 'own' properites of name and animal, the methods however are found up its prototype chain - its delegating them.

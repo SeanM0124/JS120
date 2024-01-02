@@ -1,0 +1,6 @@
+In your own words, what does encapsulation refer to in JavaScript?
+
+Encapsulation is the idea of bundling behavior and state into an object
+
+- Bundling data and operations associated with that data into a single entity - an object
+Group related properties and methods in a single object.
