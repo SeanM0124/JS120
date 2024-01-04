@@ -36,30 +36,41 @@ function createHuman() {
 
     choose(context) {
       let choice = readline.question(context.prompt('choice')).toLowerCase();
+      context.clearScreen();
       while (!['r', 'rock', 'p', 'paper', 'l', 'lizard', 'sp', 'spock', 'sc', 'scissors'].includes(choice)) {
-        choice = readline.question(context.prompt('invalidChoice')).toLowerCase();
+        context.prompt('invalidChoice');
+        choice = readline.question(context.prompt('choice')).toLowerCase();
+        context.clearScreen();
       }
       return choice;
     },
 
     convertChoice(context) {
-      let userChoice = this.choose(context);
-      switch (userChoice) {
-        case 'r': this.move = 'rock';
-          break;
-        case 'sc': this.move = 'scissors';
-          break;
-        case 'p': this.move = 'paper';
-          break;
-        case 'l': this.move = 'lizard';
-          break;
-        case 'sp': this.move = 'spock';
-          break;
-        default:
-          this.move = userChoice;
-      }
-    },
+      let choice = this.choose(context);
+      let moves = Object.keys(context.MOVES);
+      moves.forEach(play => {
+        if (context.MOVES[play].abbreviation === choice) this.move = play;
+        else if (choice === play) this.move = choice;
+      });
+    }
 
+    // convertChoice(context) {
+    //   let choice = this.choose(context);
+    //   switch (choice) {
+    //     case 'r': this.move = 'rock';
+    //       break;
+    //     case 'sc': this.move = 'scissors';
+    //       break;
+    //     case 'p': this.move = 'paper';
+    //       break;
+    //     case 'l': this.move = 'lizard';
+    //       break;
+    //     case 'sp': this.move = 'spock';
+    //       break;
+    //     default:
+    //       this.move = choice;
+    //   }
+    // },
   };
   return Object.assign(playerObject, humanObject);
 }
@@ -97,10 +108,9 @@ const RPSGame = {
   promptKey: '=>',
   winCondition: 5,
   seriesLength: [],
-  seriesEnd: [],
   MOVES: {
     rock: { abbreviation: 'r', beats: ['scissors', 'lizard']},
-    lizard: { abbreviation: 'l', beats: ['spock,', 'paper']},
+    lizard: { abbreviation: 'l', beats: ['spock', 'paper']},
     spock: { abbreviation: 'sp', beats: ['scissors', 'rock']},
     paper:  { abbreviation: 'p', beats: ['spock', 'rock']},
     scissors: { abbreviation: 'sc', beats: ['paper', 'lizard']}
@@ -140,6 +150,7 @@ const RPSGame = {
     let answer = readline.question(this.prompt(message));
     while (!['yes', 'y', 'no', 'n'].includes(answer)) {
       answer = readline.question(this.prompt('invalidAns'));
+      this.clearScreen();
     }
     this.clearScreen();
     return (['yes', 'y'].includes(answer));
@@ -203,6 +214,8 @@ const RPSGame = {
   },
 
   play() {
+    // console.log(this.human.convertChoice(this));
+    // this.yesOrNoQuestion('ready?');
     this.displayWelcomeMessage();
     while (true) {
       this.score = createScore();

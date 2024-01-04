@@ -1,17 +1,16 @@
-function createBook(title, author, read = false) {
-  return {
-    title,
-    author,
-    read,
-    getDescription() {
-      console.log(`${this.title} was written by ${this.author}. I ${this.read ? 'have' : 'have not'} read it`);
-    },
-    readBook() {
-      this.read = true;
-    },
-  };
-}
+const MOVES = {
+  rock: { abbreviation: 'r', beats: ['scissors', 'lizard']},
+  lizard: { abbreviation: 'l', beats: ['spock', 'paper']},
+  spock: { abbreviation: 'sp', beats: ['scissors', 'rock']},
+  paper:  { abbreviation: 'p', beats: ['spock', 'rock']},
+  scissors: { abbreviation: 'sc', beats: ['paper', 'lizard']}
+};
 
-let book1 = createBook('Mythos', 'Stephen Fry');
-let book2 = createBook('Me Talk Pretty One Day', 'David Sedaris', false);
-let book3 = createBook("Aunts aren't Gentlemen", 'PG Wodehouse', true);
+convertChoice(context) {
+  let moves = Object.keys(context.MOVES);
+  moves.forEach(move => {
+    if (MOVES[move].abbreviation === choice) {
+      this.move = MOVES[move];
+    }
+  });
+}
