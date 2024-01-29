@@ -53,24 +53,6 @@ function createHuman() {
         else if (choice === play) this.move = choice;
       });
     }
-
-    // convertChoice(context) {
-    //   let choice = this.choose(context);
-    //   switch (choice) {
-    //     case 'r': this.move = 'rock';
-    //       break;
-    //     case 'sc': this.move = 'scissors';
-    //       break;
-    //     case 'p': this.move = 'paper';
-    //       break;
-    //     case 'l': this.move = 'lizard';
-    //       break;
-    //     case 'sp': this.move = 'spock';
-    //       break;
-    //     default:
-    //       this.move = choice;
-    //   }
-    // },
   };
   return Object.assign(playerObject, humanObject);
 }
@@ -134,7 +116,7 @@ const RPSGame = {
   },
 
   printLines() {
-    console.log('+-------------------------------------------------------------------------------------------+');
+    console.log(`+${'-'.repeat(100)}+`);
   },
 
   clearScreen() {
@@ -214,8 +196,6 @@ const RPSGame = {
   },
 
   play() {
-    // console.log(this.human.convertChoice(this));
-    // this.yesOrNoQuestion('ready?');
     this.displayWelcomeMessage();
     while (true) {
       this.score = createScore();
